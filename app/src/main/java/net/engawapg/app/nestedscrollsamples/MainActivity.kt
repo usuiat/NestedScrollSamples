@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                                 verticalArrangement = Arrangement.SpaceEvenly,
                             ) {
                                 Button(
-                                    onClick = {navController.navigate("lazy_column_on_lazy_column")}
+                                    onClick = {navController.navigate("collapse_top_bar_sample")}
                                 ) { Text("Collapse Top Bar Sample") }
                                 Button(
                                     onClick = {navController.navigate("connection_sample1")}
@@ -43,15 +43,9 @@ class MainActivity : ComponentActivity() {
                                 Button(
                                     onClick = {navController.navigate("connection_sample2")}
                                 ) { Text("Connection Sample2") }
-                                Button(
-                                    onClick = {navController.navigate("dispatcher_sample")}
-                                ) { Text("Dispatcher Sample") }
-                                Button(
-                                    onClick = {navController.navigate("dispatcher_sample2")}
-                                ) { Text("Dispatcher Sample 2") }
                             }
                         }
-                        composable("lazy_column_on_lazy_column") {
+                        composable("collapse_top_bar_sample") {
                             CollapseTopBarSample()
                         }
                         composable("connection_sample1") {
@@ -59,12 +53,6 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("connection_sample2") {
                             ConnectionSample2()
-                        }
-                        composable("dispatcher_sample") {
-                            DispatcherSample()
-                        }
-                        composable("dispatcher_sample2") {
-                            DispatcherSample2()
                         }
                     }
                 }

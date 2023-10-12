@@ -18,23 +18,15 @@ import kotlinx.coroutines.runBlocking
 
 @Composable
 fun ConnectionSample2() {
-    val state = rememberConnectionSampleState2(maxY = 200.dp, initY = 200.dp)
-    ConnectionSampleScreen(state = state)
-}
-
-@Composable
-fun rememberConnectionSampleState2(
-    maxY: Dp,
-    initY: Dp,
-): ConnectionSampleState {
     val density = LocalDensity.current
-    return remember {
+    val state = remember {
         ConnectionSampleStateImpl2(
-            maxOffset = maxY,
-            initialOffset = initY,
+            maxOffset = 200.dp,
+            initialOffset = 200.dp,
             density = density,
         )
     }
+    ConnectionSampleScreen(state = state)
 }
 
 @Stable

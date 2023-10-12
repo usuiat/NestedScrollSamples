@@ -17,29 +17,29 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ConnectionSample1() {
     val density = LocalDensity.current
-    val state = remember {
-        ConnectionSampleStateImpl1(
+    val scrollState = remember {
+        ConnectionSampleScrollStateImpl1(
             maxOffset = 200.dp,
             initialOffset = 200.dp,
             density = density,
         )
     }
-    ConnectionSampleScreen(state = state)
+    ConnectionSampleScreen(scrollState = scrollState)
 }
 
 @Stable
-class ConnectionSampleStateImpl1(
+class ConnectionSampleScrollStateImpl1(
     maxOffset: Dp,
     initialOffset: Dp,
     private val density: Density,
-) : ConnectionSampleState {
+) : ConnectionSampleScrollState {
     private val maxOffsetPx = with(density) { maxOffset.toPx() }
     private val initialOffsetPx = with(density) { initialOffset.toPx() }
     private var _offsetPx by mutableFloatStateOf(initialOffsetPx)
     override val offset: Dp
         get() = with(density) { _offsetPx.toDp() }
 
-    override val connection = object : NestedScrollConnection {
+    override val nestedScrollConnection = object : NestedScrollConnection {
         override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
             if ((available.y >= 0f) or (_offsetPx <= 0f)) return Offset.Zero
             val consumedY = doScroll(available.y)

@@ -19,22 +19,22 @@ import kotlinx.coroutines.runBlocking
 @Composable
 fun ConnectionSample2() {
     val density = LocalDensity.current
-    val state = remember {
-        ConnectionSampleStateImpl2(
+    val scrollState = remember {
+        ConnectionSampleScrollStateImpl2(
             maxOffset = 200.dp,
             initialOffset = 200.dp,
             density = density,
         )
     }
-    ConnectionSampleScreen(state = state)
+    ConnectionSampleScreen(scrollState = scrollState)
 }
 
 @Stable
-class ConnectionSampleStateImpl2(
+class ConnectionSampleScrollStateImpl2(
     maxOffset: Dp,
     initialOffset: Dp,
     private val density: Density,
-) : ConnectionSampleState {
+) : ConnectionSampleScrollState {
     private val maxOffsetPx = with(density) { maxOffset.toPx() }
     private val initialOffsetPx = with(density) { initialOffset.toPx() }
     private var _offsetPx = Animatable(initialValue = initialOffsetPx).apply {
@@ -43,7 +43,7 @@ class ConnectionSampleStateImpl2(
     override val offset: Dp
         get() = with(density) { _offsetPx.value.toDp() }
 
-    override val connection = object : NestedScrollConnection {
+    override val nestedScrollConnection = object : NestedScrollConnection {
         override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
             if (source == NestedScrollSource.Fling) return Offset.Zero
             if ((available.y >= 0f) or (_offsetPx.value <= 0f)) return Offset.Zero

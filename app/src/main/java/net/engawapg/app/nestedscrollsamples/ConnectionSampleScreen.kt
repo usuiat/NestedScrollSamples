@@ -14,23 +14,23 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-interface ConnectionSampleState {
-    val connection: NestedScrollConnection
+interface ConnectionSampleScrollState {
+    val nestedScrollConnection: NestedScrollConnection
     val offset: Dp
 }
 
 @Composable
-fun ConnectionSampleScreen(state: ConnectionSampleState) {
+fun ConnectionSampleScreen(scrollState: ConnectionSampleScrollState) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .nestedScroll(state.connection)
+            .nestedScroll(scrollState.nestedScrollConnection)
     ) {
-        GrayBox(modifier = Modifier.height(state.offset))
+        GrayBox(modifier = Modifier.height(scrollState.offset))
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .offset(y = state.offset)
+                .offset(y = scrollState.offset)
         ) {
             items(50) {
                 Text(

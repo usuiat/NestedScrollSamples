@@ -43,6 +43,12 @@ class MainActivity : ComponentActivity() {
                                 Button(
                                     onClick = {navController.navigate("connection_sample2")}
                                 ) { Text("Connection Sample2") }
+                                Button(
+                                    onClick = {navController.navigate("dispatcher_sample1")}
+                                ) { Text("Dispatcher Sample1") }
+                                Button(
+                                    onClick = {navController.navigate("dispatcher_sample2")}
+                                ) { Text("Dispatcher Sample 2") }
                             }
                         }
                         composable("collapse_top_bar_sample") {
@@ -53,6 +59,12 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("connection_sample2") {
                             ConnectionSample2()
+                        }
+                        composable("dispatcher_sample1") {
+                            DispatcherSample1()
+                        }
+                        composable("dispatcher_sample2") {
+                            DispatcherSample2()
                         }
                     }
                 }

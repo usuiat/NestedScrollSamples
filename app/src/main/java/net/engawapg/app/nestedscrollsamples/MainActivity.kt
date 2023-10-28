@@ -49,6 +49,9 @@ class MainActivity : ComponentActivity() {
                                 Button(
                                     onClick = {navController.navigate("dispatcher_sample2")}
                                 ) { Text("Dispatcher Sample 2") }
+                                Button(
+                                    onClick = {navController.navigate("vertical_scroll_sample")}
+                                ) { Text("VerticalScroll Sample") }
                             }
                         }
                         composable("collapse_top_bar_sample") {
@@ -65,6 +68,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("dispatcher_sample2") {
                             DispatcherSample2()
+                        }
+                        composable("vertical_scroll_sample") {
+                            VerticalScrollSample()
                         }
                     }
                 }
